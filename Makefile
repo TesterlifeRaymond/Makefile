@@ -6,7 +6,7 @@ GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
 BINARY_NAME=main
 BINARY_UNIX=$(BINARY_NAME)_unix
-NAME?="nil"
+NAME?="Project"
 
 
 VERSION=1.0.0
@@ -18,10 +18,9 @@ all: test build install run deps setup
 
 setup: 
 	mkdir ${NAME}; cd ${NAME}; mkdir tests enti config core logic model; touch main.go
-	for item in enti config core logic model
-	do
-		echo ${item}.go created
-		touch ${item}/${item}.go
+	@ for item in enti config core logic model; \
+	do \
+		cd ${PWD}/${NAME}; touch $$item/$$item.go;\
 	done
 
 build: test
